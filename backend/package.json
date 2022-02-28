@@ -1,0 +1,22 @@
+{
+  "name": "ienquetes-backend",
+  "version": "0.0.1",
+  "description": "Back-end da aplicação ienquetes",
+  "scripts": {
+    "dev": "nodemon ./src/app.js"
+  },
+  "main": "src/app.js",
+  "author": "jaopanes",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.34",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
