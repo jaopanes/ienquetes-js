@@ -1,9 +1,9 @@
 module.exports = class SurveyRepository {
   #collection = "Survey"
-  #db = null
+  #mongoConnection = null
 
-  constructor({ db }) {
-    this.#db = db
+  constructor({ mongoConnection }) {
+    this.#mongoConnection = mongoConnection
   }
 
   async find() { }

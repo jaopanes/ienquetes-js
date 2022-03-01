@@ -1,7 +1,7 @@
-const createSurveyController = require('../controllers/createSurveyController')
+const SurveyController = require('../controllers/SurveyController')
 
 module.exports = router => {
-  router.post('/survey', createSurveyController)
+  router.post('/survey', SurveyController.create)
 
   return router
 }

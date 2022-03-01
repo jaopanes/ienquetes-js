@@ -1,6 +1,6 @@
 const Survey = require("../models/Survey")
 
-module.exports = class CreateUserService {
+module.exports = class CreateSurveyService {
   #surveyRepository = null
 
   constructor({ surveyRepository }) {
@@ -22,6 +22,8 @@ module.exports = class CreateUserService {
       options: param.options
     });
 
-    const surveyCreate = await this.#surveyRepository.insert(survey);
+    //const surveyCreate = await this.#surveyRepository.insert(survey);
+
+    return survey;
   }
 }
