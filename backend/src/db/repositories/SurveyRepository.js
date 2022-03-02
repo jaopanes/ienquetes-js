@@ -1,4 +1,4 @@
-const { returns: { ok, erro } } = require('../../common')
+const { ok, erro } = require('../../common')
 module.exports = class SurveyRepository {
   #collection = "Survey"
   #mongoConnection = null
@@ -17,13 +17,21 @@ module.exports = class SurveyRepository {
       const result = await db.collection(this.#collection).insertOne(survey)
 
       if (!result.acknowledged) {
-        return erro("There was an error entering the record", "MONGO_1")
+        return erro({
+          message: 'There was an error entering the record',
+          code: 'MONGO_1',
+        })
       }
 
-      return ok()
+      return ok({})
     } catch (error) {
       console.log(error)
-      return erro(error.message, "MONGO_2")
+
+      return erro({
+        message: 'There was an error entering the record',
+        code: 'MONGO_2',
+        erros: [error.message],
+      })
     }
   }
 

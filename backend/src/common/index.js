@@ -7,6 +7,6 @@ const ValidationError = require('./errors/ValidationError')
 module.exports = {
   uuid,
   date,
-  returns,
-  ValidationError
+  ValidationError,
+  ...returns
 }
