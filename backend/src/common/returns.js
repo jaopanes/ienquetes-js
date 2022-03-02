@@ -8,7 +8,7 @@ module.exports = {
   httpOk(status, data) {
     return { status, data }
   },
-  httpErro(status, code, message) {
-    return { status, code, message }
+  httpErro(status, code, message, erros = undefined) {
+    return { status, code, message, erros }
   }
 }

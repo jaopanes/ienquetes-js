@@ -7,7 +7,11 @@ module.exports = class SurveyController {
       const createSurvey = await createSurveyService.execute(req.body)
 
       if (createSurvey.status !== 201) {
-        return res.status(createSurvey.status).json({ message: createSurvey.message, code: createSurvey.code })
+        return res.status(createSurvey.status).json({
+          message: createSurvey.message,
+          code: createSurvey.code,
+          erros: createSurvey.erros
+        })
       }
 
       return res.status(createSurvey.status).json(createSurvey.data)
