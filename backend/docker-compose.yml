@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  ienquetes.backend:
+    container_name: ienquetes.api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - '/usr/src/app/node_modules'
+    environment:
+      - NODE_ENV=test
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - db_mongo
+    links:
+      - db_mongo
+    ports:
+      - 5000:5000
+    networks:
+      - servicos
+    stdin_open: true
+    tty:  true
+
+  db_mongo:
+    image: mongo:5.0
+    container_name: ienquetes.mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ienquetes
+      - MONGO_INITDB_ROOT_PASSWORD=ienquetes
+    networks: 
+      - servicos
+      
+networks:
+  servicos:
+    name: ienquetes
