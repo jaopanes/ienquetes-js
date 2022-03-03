@@ -35,4 +35,11 @@ module.exports = class Survey {
     this.deletedAt = deletedAt
     this.id = id
   }
+
+  safeDelete() {
+    this.deletedAt = date.currentDateHour()
+    this.updatedAt = date.currentDateHour()
+
+    return this
+  }
 }

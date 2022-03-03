@@ -10,7 +10,10 @@ module.exports = class SurveyRepository {
   async find() {
     try {
       const db = await this.#mongoConnection.db()
-      const result = await db.collection(this.#collection).find().toArray()
+      const result = await db.collection(this.#collection)
+        .find({ "deletedAt": null })
+        .project({ _id: 0, deletedAt: 0 })
+        .toArray()
 
       return ok({ data: result })
     } catch (error) {
@@ -27,7 +30,10 @@ module.exports = class SurveyRepository {
   async findOne(id) {
     try {
       const db = await this.#mongoConnection.db()
-      const result = await db.collection(this.#collection).findOne({ id })
+      const result = await db.collection(this.#collection).findOne(
+        { id, "deletedAt": null },
+        { _id: 0, deletedAt: 0 }
+      )
 
       return ok({ data: result })
     } catch (error) {
@@ -65,5 +71,40 @@ module.exports = class SurveyRepository {
     }
   }
 
-  async delete(id) { }
+  async safeDelete(survey) {
+    try {
+      const db = await this.#mongoConnection.db()
+      const result = await db.collection(this.#collection).updateOne(
+        { "id": survey.id },
+        {
+          $set: {
+            title: survey.title,
+            initiatedAt: survey.initiatedAt,
+            endedAt: survey.endedAt,
+            options: survey.options,
+            createdAt: survey.createdAt,
+            updatedAt: survey.updatedAt,
+            deletedAt: survey.deletedAt,
+          }
+        }
+      )
+
+      if (!result.acknowledged || result.modifiedCount !== 1) {
+        return erro({
+          message: 'There was an error deleting the record',
+          code: 'MONGO_1',
+        })
+      }
+
+      return ok({})
+    } catch (error) {
+      console.log(error)
+
+      return erro({
+        message: 'There was an error deleting the record',
+        code: 'MONGO_2',
+        erros: [error.message],
+      })
+    }
+  }
 }
