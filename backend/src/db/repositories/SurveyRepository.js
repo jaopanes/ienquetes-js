@@ -7,11 +7,26 @@ module.exports = class SurveyRepository {
     this.#mongoConnection = mongoConnection
   }
 
-  async find() { }
+  async find() {
+    try {
+      const db = await this.#mongoConnection.db()
+      const result = await db.collection(this.#collection).find().toArray()
+
+      return ok({ data: result })
+    } catch (error) {
+      console.log(error)
+
+      return erro({
+        message: 'There was an error occurred while listinig records',
+        code: 'MONGO_2',
+        erros: [error.message],
+      })
+    }
+  }
+
   async findOne(id) { }
 
   async insert(survey) {
-
     try {
       const db = await this.#mongoConnection.db()
       const result = await db.collection(this.#collection).insertOne(survey)
