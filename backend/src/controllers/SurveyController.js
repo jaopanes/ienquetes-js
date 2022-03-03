@@ -42,4 +42,27 @@ module.exports = class SurveyController {
       return res.status(500).json({ message: 'There was an error occurred while listinig records', code: 'CONTROLLER_1', erros: [error.message] })
     }
   }
+
+  static async find(req, res) {
+    try {
+      const { id } = req.params
+
+      const findSurveyService = services['findSurvey']()
+      const findSurvey = await findSurveyService.execute({ id })
+
+      if (findSurvey.status !== 200) {
+        return res.status(findSurvey.status).json({
+          message: findSurvey.message,
+          code: findSurvey.code,
+          erros: findSurvey.erros
+        })
+      }
+
+      return res.status(findSurvey.status).json(findSurvey.data)
+    } catch (error) {
+      console.log(error)
+
+      return res.status(500).json({ message: 'There was an error occurred finding record', code: 'CONTROLLER_1', erros: [error.message] })
+    }
+  }
 }

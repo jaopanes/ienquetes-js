@@ -24,7 +24,7 @@ module.exports = class MongoConnection {
         readPreference: ReadPreference.PRIMARY_PREFERRED
       })
 
-      const connection = await this.#clientMongo.connect();
+      const connection = await this.#clientMongo.connect()
 
       const dbName = `${process.env.MONGO_DBNAME}_${process.env.ENVIRONMENT}`
       const db = connection.db(dbName)
@@ -39,7 +39,7 @@ module.exports = class MongoConnection {
   static async close() {
     try {
       if (this.#clientMongo) this.#clientMongo.close()
-      return true;
+      return true
     } catch (error) {
       console.log(error)
       return false

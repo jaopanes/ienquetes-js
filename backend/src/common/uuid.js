@@ -5,6 +5,6 @@ module.exports = {
    * @return {string} UUID V4
    */
   generate() {
-    return uuid.v4();
+    return uuid.v4()
   }
 }

@@ -1,6 +1,6 @@
 const { ok, erro } = require('../../common')
 module.exports = class SurveyRepository {
-  #collection = "Survey"
+  #collection = 'Survey'
   #mongoConnection = null
 
   constructor({ mongoConnection }) {
@@ -24,7 +24,22 @@ module.exports = class SurveyRepository {
     }
   }
 
-  async findOne(id) { }
+  async findOne(id) {
+    try {
+      const db = await this.#mongoConnection.db()
+      const result = await db.collection(this.#collection).findOne({ id })
+
+      return ok({ data: result })
+    } catch (error) {
+      console.log(error)
+
+      return erro({
+        message: 'There was an error occurred finding record',
+        code: 'MONGO_2',
+        erros: [error.message],
+      })
+    }
+  }
 
   async insert(survey) {
     try {

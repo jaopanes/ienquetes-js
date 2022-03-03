@@ -1,5 +1,4 @@
-const Survey = require("../models/Survey")
-const { httpErro, httpOk, ValidationError } = require('../common')
+const { httpErro, httpOk } = require('../common')
 
 module.exports = class ListSurveysService {
   #surveyRepository = null
@@ -15,9 +14,9 @@ module.exports = class ListSurveysService {
       if (!listSurveys.ok) {
         return httpErro({
           status: 500,
-          code: surveyCreate.code,
-          message: surveyCreate.message,
-          erros: surveyCreate.erros
+          code: listSurveys.code,
+          message: listSurveys.message,
+          erros: listSurveys.erros
         })
       }
 
@@ -25,7 +24,7 @@ module.exports = class ListSurveysService {
     } catch (error) {
       console.log(error)
 
-      return httpErro({ status: 500, code: "SERVICE_1", message: "There was an error occurred while listinig records", erros: [error.message] })
+      return httpErro({ status: 500, code: 'SERVICE_1', message: 'There was an error occurred while listinig records', erros: [error.message] })
     }
   }
 } 
