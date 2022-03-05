@@ -1,4 +1,4 @@
-const { httpErro, httpOk } = require('../common')
+const { httpErro, httpOk } = require('../../common')
 
 module.exports = class ListSurveysService {
   #surveyRepository = null

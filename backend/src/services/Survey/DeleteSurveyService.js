@@ -1,5 +1,5 @@
-const { httpErro, httpOk } = require('../common')
-const Survey = require('../models/Survey')
+const { httpErro, httpOk } = require('../../common')
+const Survey = require('../../models/Survey')
 
 module.exports = class DeleteSurveyService {
   #surveyRepository = null

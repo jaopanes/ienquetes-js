@@ -1,5 +1,5 @@
-const Survey = require('../models/Survey')
-const { httpErro, httpOk, ValidationError } = require('../common')
+const Survey = require('../../models/Survey')
+const { httpErro, httpOk, ValidationError } = require('../../common')
 
 module.exports = class CreateSurveyService {
   #surveyRepository = null
