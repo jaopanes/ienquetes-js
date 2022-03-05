@@ -15,26 +15,7 @@ module.exports = class CreateSurveyService {
    * @param {array} options
    */
   async execute({ title, initiatedAt, endedAt, options }) {
-    const erros = []
-
     try {
-      if (!title) {
-        erros.push('Name field is required')
-      }
-      if (!initiatedAt) {
-        erros.push('Initiated at field is required')
-      }
-      if (!endedAt) {
-        erros.push('Ended at field is required')
-      }
-      if (!options) {
-        erros.push('Options field is required')
-      }
-
-      if (erros.length > 0) {
-        throw new ValidationError("There were validation errors", erros)
-      }
-
       const survey = new Survey({
         title,
         initiatedAt,
