@@ -3,8 +3,12 @@ const services = require('../services')
 module.exports = class SurveyController {
   static async create(req, res) {
     try {
+      const { title, initiatedAt, endedAt, options } = req.body
+
       const createSurveyService = services['createSurvey']()
-      const createSurvey = await createSurveyService.execute(req.body)
+      const createSurvey = await createSurveyService.execute({
+        title, initiatedAt, endedAt, options
+      })
 
       if (createSurvey.status !== 201) {
         return res.status(createSurvey.status).json({
