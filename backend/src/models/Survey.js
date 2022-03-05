@@ -57,7 +57,10 @@ module.exports = class Survey {
     this.title = title
     this.initiatedAt = initiatedAt
     this.endedAt = endedAt
-    this.options = options
+    this.options = options.map(option => ({
+      id: uuid.generate(),
+      name: option
+    }))
     this.createdAt = createdAt
     this.updatedAt = updatedAt
     this.deletedAt = deletedAt
