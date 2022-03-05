@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+button,
+textarea,
+select {
+  border: 0;
+  padding: 0;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+input::placeholder {
+  font-family: "Poppins", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+a,
+div,
+input,
+label,
+textarea,
+select,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+}
