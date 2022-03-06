@@ -73,4 +73,16 @@ module.exports = class Survey {
 
     return this
   }
+
+  secureReturn() {
+    return {
+      title: this.title,
+      initiatedAt: this.initiatedAt,
+      endedAt: this.endedAt,
+      options: this.options,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+      id: this.id
+    }
+  }
 }

@@ -34,7 +34,7 @@ module.exports = class CreateSurveyService {
         })
       }
 
-      return httpOk({ status: 201, data: survey })
+      return httpOk({ status: 201, data: survey.secureReturn() })
     } catch (error) {
       console.log(error)
 
