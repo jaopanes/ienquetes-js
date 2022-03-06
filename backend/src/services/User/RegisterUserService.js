@@ -9,13 +9,23 @@ module.exports = class CreateSurveyService {
   }
 
   /**
-   * @param {string} title
-   * @param {string} initiatedAt
-   * @param {string} endedAt
-   * @param {array} options
+   * @param {string} name
+   * @param {string} nickname
+   * @param {string} email
+   * @param {string} password
+   * @param {string} confirmPassword
    */
   async execute({ name, nickname, email, password, confirmPassword }) {
+    const erros = []
+
     try {
+      if (!confirmPassword) {
+        erros.push('Confirm password field is required')
+      }
+      if (password !== confirmPassword) {
+        erros.push('Passwords do not match')
+      }
+
       const user = new User({
         name,
         nickname,
@@ -32,6 +42,10 @@ module.exports = class CreateSurveyService {
           message: userCreate.message,
           erros: userCreate.erros
         })
+      }
+
+      if (erros.length > 0) {
+        throw new ValidationError('There were validation errors', erros)
       }
 
       return httpOk({ status: 201, data: user })
