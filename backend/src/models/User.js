@@ -1,4 +1,4 @@
-const { date, uuid, validations, ValidationError } = require('../common')
+const { date, uuid, validations, ValidationError, hash } = require('../common')
 
 module.exports = class User {
   #erros = []
@@ -39,14 +39,24 @@ module.exports = class User {
       throw new ValidationError('There were validation errors', this.#erros)
     }
 
-
     this.name = name
     this.nickname = nickname.toLowerCase()
     this.email = email.toLowerCase()
-    this.password = password
+    this.password = hash.generateHash(password)
     this.createdAt = createdAt
     this.updatedAt = updatedAt
     this.deletedAt = deletedAt
     this.id = id
+  }
+
+  secureReturn() {
+    return {
+      name: this.name,
+      nickname: this.nickname,
+      email: this.email,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+      id: this.id
+    }
   }
 }

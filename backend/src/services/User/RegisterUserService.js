@@ -48,7 +48,7 @@ module.exports = class CreateSurveyService {
         throw new ValidationError('There were validation errors', erros)
       }
 
-      return httpOk({ status: 201, data: user })
+      return httpOk({ status: 201, data: user.secureReturn() })
     } catch (error) {
       console.log(error)
 
