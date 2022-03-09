@@ -1,4 +1,4 @@
-const { httpErro, httpOk } = require('../../common')
+const { erro, ok } = require('../../common')
 
 module.exports = class FindSurveyService {
   #surveyRepository = null
@@ -15,25 +15,23 @@ module.exports = class FindSurveyService {
       const findSurvey = await this.#surveyRepository.findOne(id)
 
       if (!findSurvey.ok) {
-        return httpErro({
-          status: 500,
+        return erro({
           code: findSurvey.code,
           message: findSurvey.message,
           erros: findSurvey.erros
         })
       } else if (!findSurvey.data) {
-        return httpErro({
-          status: 404,
+        return erro({
           code: 'NOT_FOUND',
           message: 'Record not found with the given id'
         })
       }
 
-      return httpOk({ status: 200, data: findSurvey.data })
+      return ok({ data: findSurvey.data })
     } catch (error) {
       console.log(error)
 
-      return httpErro({ status: 500, code: 'SERVICE_1', message: 'There was an error occurred finding record', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'There was an error occurred finding record', erros: [error.message] })
     }
   }
 } 

@@ -1,3 +1,5 @@
+const { statusCodes } = require("../../common")
+
 module.exports = class ListSurveysController {
   #listSurveysService = null
 
@@ -8,20 +10,21 @@ module.exports = class ListSurveysController {
   async execute(req, res) {
     try {
       const listSurveys = await this.#listSurveysService.execute()
+      const statusCode = statusCodes[listSurveys.code]
 
-      if (listSurveys.status !== 200) {
-        return res.status(listSurveys.status).json({
+      if (!listSurveys.ok) {
+        return res.status(statusCode).json({
           message: listSurveys.message,
           code: listSurveys.code,
           erros: listSurveys.erros
         })
       }
 
-      return res.status(listSurveys.status).json(listSurveys.data)
+      return res.status(statusCode).json(listSurveys.data)
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error occurred while listinig records', code: 'CONTROLLER_1', erros: [error.message] })
+      return res.status(500).json({ message: 'There was an error occurred while listinig records', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

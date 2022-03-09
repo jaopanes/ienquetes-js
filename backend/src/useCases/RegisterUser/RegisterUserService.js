@@ -1,5 +1,5 @@
 const User = require('../../models/User')
-const { httpErro, httpOk, ValidationError } = require('../../common')
+const { ValidationError, erro, ok } = require('../../common')
 
 module.exports = class CreateSurveyService {
   #userRepository = null
@@ -36,7 +36,7 @@ module.exports = class CreateSurveyService {
       const userCreate = await this.#userRepository.insert(user)
 
       if (!userCreate.ok) {
-        return httpErro({
+        return erro({
           status: 500,
           code: userCreate.code,
           message: userCreate.message,
@@ -48,15 +48,15 @@ module.exports = class CreateSurveyService {
         throw new ValidationError('There were validation errors', erros)
       }
 
-      return httpOk({ status: 201, data: user.secureReturn() })
+      return ok({ code: "CREATED", data: user.secureReturn() })
     } catch (error) {
       console.log(error)
 
       if (error instanceof ValidationError) {
-        return httpErro({ status: 400, code: 'VALIDATION_INPUT', message: error.message, erros: error.erros })
+        return erro({ code: 'VALIDATION_INPUT', message: error.message, erros: error.erros })
       }
 
-      return httpErro({ status: 500, code: 'SERVICE_1', message: 'There was an error entering the record', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'There was an error entering the record', erros: [error.message] })
     }
   }
 } 

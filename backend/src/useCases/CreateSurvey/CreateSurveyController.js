@@ -1,3 +1,5 @@
+const { statusCodes } = require("../../common")
+
 module.exports = class CreateSurveyController {
   #createSurveyService = null
 
@@ -12,20 +14,21 @@ module.exports = class CreateSurveyController {
       const createSurvey = await this.#createSurveyService.execute({
         title, initiatedAt, endedAt, options
       })
+      const statusCode = statusCodes[createSurvey.code]
 
-      if (createSurvey.status !== 201) {
-        return res.status(createSurvey.status).json({
+      if (!createSurvey.ok) {
+        return res.status(statusCode).json({
           message: createSurvey.message,
           code: createSurvey.code,
           erros: createSurvey.erros
         })
       }
 
-      return res.status(createSurvey.status).json(createSurvey.data)
+      return res.status(statusCode).json(createSurvey.data)
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error entering the record', code: 'CONTROLLER_1', erros: [error.message] })
+      return res.status(500).json({ message: 'There was an error entering the record', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

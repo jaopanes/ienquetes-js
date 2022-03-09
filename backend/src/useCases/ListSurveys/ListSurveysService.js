@@ -1,4 +1,4 @@
-const { httpErro, httpOk } = require('../../common')
+const { erro, ok } = require('../../common')
 
 module.exports = class ListSurveysService {
   #surveyRepository = null
@@ -12,19 +12,18 @@ module.exports = class ListSurveysService {
       const listSurveys = await this.#surveyRepository.find()
 
       if (!listSurveys.ok) {
-        return httpErro({
-          status: 500,
+        return erro({
           code: listSurveys.code,
           message: listSurveys.message,
           erros: listSurveys.erros
         })
       }
 
-      return httpOk({ status: 200, data: listSurveys.data })
+      return ok({ data: listSurveys.data })
     } catch (error) {
       console.log(error)
 
-      return httpErro({ status: 500, code: 'SERVICE_1', message: 'There was an error occurred while listinig records', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'There was an error occurred while listinig records', erros: [error.message] })
     }
   }
 } 

@@ -1,4 +1,4 @@
-const { httpErro, httpOk } = require('../../common')
+const { ok, erro } = require('../../common')
 const Survey = require('../../models/Survey')
 
 module.exports = class DeleteSurveyService {
@@ -16,15 +16,14 @@ module.exports = class DeleteSurveyService {
       const findSurvey = await this.#surveyRepository.findOne(id)
 
       if (!findSurvey.ok) {
-        return httpErro({
-          status: 500,
+        return erro({
+
           code: findSurvey.code,
           message: findSurvey.message,
           erros: findSurvey.erros
         })
       } else if (!findSurvey.data) {
-        return httpErro({
-          status: 404,
+        return erro({
           code: 'NOT_FOUND',
           message: 'Record not found with the given id'
         })
@@ -44,19 +43,18 @@ module.exports = class DeleteSurveyService {
       const safeDeleteSurvey = await this.#surveyRepository.safeDelete(survey)
 
       if (!safeDeleteSurvey.ok) {
-        return httpErro({
-          status: 500,
+        return erro({
           code: findSurvey.code,
           message: findSurvey.message,
           erros: findSurvey.erros
         })
       }
 
-      return httpOk({ status: 204 })
+      return ok({ code: "NO_CONTENT" })
     } catch (error) {
       console.log(error)
 
-      return httpErro({ status: 500, code: 'SERVICE_1', message: 'There was an error occurred deleting record', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'There was an error occurred deleting record', erros: [error.message] })
     }
   }
 } 

@@ -1,3 +1,5 @@
+const { statusCodes } = require("../../common")
+
 module.exports = class FindSurveyController {
   #findSurveyService = null
 
@@ -10,20 +12,21 @@ module.exports = class FindSurveyController {
       const { id } = req.params
 
       const findSurvey = await this.#findSurveyService.execute({ id })
+      const statusCode = statusCodes[findSurvey.code]
 
-      if (findSurvey.status !== 200) {
-        return res.status(findSurvey.status).json({
+      if (!findSurvey.ok) {
+        return res.status(statusCode).json({
           message: findSurvey.message,
           code: findSurvey.code,
           erros: findSurvey.erros
         })
       }
 
-      return res.status(findSurvey.status).json(findSurvey.data)
+      return res.status(statusCode).json(findSurvey.data)
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error occurred finding record', code: 'CONTROLLER_1', erros: [error.message] })
+      return res.status(500).json({ message: 'There was an error occurred finding record', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

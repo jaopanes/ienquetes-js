@@ -1,3 +1,5 @@
+const { statusCodes } = require('../../common')
+
 module.exports = class RegisterUserController {
   #registerUserService = null
 
@@ -12,20 +14,21 @@ module.exports = class RegisterUserController {
       const registerUser = await this.#registerUserService.execute({
         name, nickname, email, password, confirmPassword
       })
+      const statusCode = statusCodes[registerUser.code]
 
-      if (registerUser.status !== 201) {
-        return res.status(registerUser.status).json({
+      if (!registerUser.ok) {
+        return res.status(statusCode).json({
           message: registerUser.message,
           code: registerUser.code,
           erros: registerUser.erros
         })
       }
 
-      return res.status(registerUser.status).json(registerUser.data)
+      return res.status(statusCode).json(registerUser.data)
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error register user', code: 'CONTROLLER_1', erros: [error.message] })
+      return res.status(500).json({ message: 'There was an error register user', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

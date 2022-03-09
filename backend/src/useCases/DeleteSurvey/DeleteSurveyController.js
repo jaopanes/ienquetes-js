@@ -1,3 +1,4 @@
+const { statusCodes } = require("../../common")
 module.exports = class DeleteSurveyController {
   #deleteSurveyService = null
 
@@ -10,20 +11,21 @@ module.exports = class DeleteSurveyController {
       const { id } = req.params
 
       const deleteSurvey = await this.#deleteSurveyService.execute({ id })
+      const statusCode = statusCodes[deleteSurvey.code]
 
-      if (deleteSurvey.status !== 204) {
-        return res.status(deleteSurvey.status).json({
+      if (!deleteSurvey.ok) {
+        return res.status(statusCode).json({
           message: deleteSurvey.message,
           code: deleteSurvey.code,
           erros: deleteSurvey.erros
         })
       }
 
-      return res.status(deleteSurvey.status).json()
+      return res.status(statusCode).json()
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error occurred deleting record', code: 'CONTROLLER_1', erros: [error.message] })
+      return res.status(500).json({ message: 'There was an error occurred deleting record', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }
