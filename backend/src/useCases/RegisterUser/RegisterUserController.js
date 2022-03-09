@@ -1,12 +1,15 @@
-const services = require('../services')
+module.exports = class RegisterUserController {
+  #registerUserService = null
 
-module.exports = class UserController {
-  static async register(req, res) {
+  constructor({ registerUserService }) {
+    this.#registerUserService = registerUserService
+  }
+
+  async execute(req, res) {
     try {
       const { name, nickname, email, password, confirmPassword } = req.body
 
-      const registerUserService = services['registerUser']()
-      const registerUser = await registerUserService.execute({
+      const registerUser = await this.#registerUserService.execute({
         name, nickname, email, password, confirmPassword
       })
 
