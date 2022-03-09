@@ -21,7 +21,7 @@ module.exports = class UserRepository {
 
       return erro({
         message: 'There was an error occurred while listinig records',
-        code: 'MONGO_2',
+        code: 'REPOSITORY',
         erros: [error.message],
       })
     }
@@ -41,7 +41,7 @@ module.exports = class UserRepository {
 
       return erro({
         message: 'There was an error occurred finding record',
-        code: 'MONGO_2',
+        code: 'REPOSITORY',
         erros: [error.message],
       })
     }
@@ -55,7 +55,7 @@ module.exports = class UserRepository {
       if (!result.acknowledged) {
         return erro({
           message: 'There was an error entering the record',
-          code: 'MONGO_1',
+          code: 'REPOSITORY',
         })
       }
 
@@ -65,7 +65,7 @@ module.exports = class UserRepository {
 
       return erro({
         message: 'There was an error entering the record',
-        code: 'MONGO_2',
+        code: 'REPOSITORY',
         erros: [error.message],
       })
     }
@@ -92,7 +92,7 @@ module.exports = class UserRepository {
       if (!result.acknowledged || result.modifiedCount !== 1) {
         return erro({
           message: 'There was an error deleting the record',
-          code: 'MONGO_1',
+          code: 'REPOSITORY',
         })
       }
 
@@ -102,7 +102,7 @@ module.exports = class UserRepository {
 
       return erro({
         message: 'There was an error deleting the record',
-        code: 'MONGO_2',
+        code: 'REPOSITORY',
         erros: [error.message],
       })
     }
