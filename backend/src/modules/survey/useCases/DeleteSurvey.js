@@ -1,7 +1,7 @@
 const { ok, erro } = require('../../../common')
 const Survey = require('../models/Survey')
 
-module.exports = class DeleteSurveyService {
+module.exports = class DeleteSurvey {
   #surveyRepository = null
 
   constructor({ surveyRepository }) {

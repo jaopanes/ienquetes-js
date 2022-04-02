@@ -1,17 +1,17 @@
 const { statusCodes } = require("../../../common")
 
 module.exports = class CreateSurveyController {
-  #createSurveyService = null
+  #createSurvey = null
 
-  constructor({ createSurveyService }) {
-    this.#createSurveyService = createSurveyService
+  constructor({ createSurvey }) {
+    this.#createSurvey = createSurvey
   }
 
   async execute(req, res) {
     try {
       const { title, initiatedAt, endedAt, options } = req.body
 
-      const createSurvey = await this.#createSurveyService.execute({
+      const createSurvey = await this.#createSurvey.execute({
         title, initiatedAt, endedAt, options
       })
       const statusCode = statusCodes[createSurvey.code]

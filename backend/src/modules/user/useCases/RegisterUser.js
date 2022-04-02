@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const { validationError, erro, ok } = require('../../../common')
 
-module.exports = class CreateSurveyService {
+module.exports = class ResgisterUser {
   #userRepository = null
 
   constructor({ userRepository }) {
@@ -26,6 +26,20 @@ module.exports = class CreateSurveyService {
         erros.push('Passwords do not match')
       }
 
+      const userCreatedWithEmail = await this.#userRepository.findOneByEmail(email);
+      if(userCreatedWithEmail.data) {
+        erros.push('User already registered with this email')
+      }
+
+      const userCreatedWithNickname = await this.#userRepository.findOneByNickname(nickname);
+      if(userCreatedWithNickname.data) {
+        erros.push('User already registered with this nickname')
+      }
+
+      if (erros.length > 0) {
+        throw new validationError('There were validation errors', erros)
+      }
+
       const user = new User({
         name,
         nickname,
@@ -37,15 +51,10 @@ module.exports = class CreateSurveyService {
 
       if (!userCreate.ok) {
         return erro({
-          status: 500,
           code: userCreate.code,
           message: userCreate.message,
           erros: userCreate.erros
         })
-      }
-
-      if (erros.length > 0) {
-        throw new validationError('There were validation errors', erros)
       }
 
       return ok({ code: "CREATED", data: user.secureReturn() })

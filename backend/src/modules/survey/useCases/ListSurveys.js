@@ -1,6 +1,6 @@
 const { erro, ok } = require('../../../common')
 
-module.exports = class ListSurveysService {
+module.exports = class ListSurveys {
   #surveyRepository = null
 
   constructor({ surveyRepository }) {

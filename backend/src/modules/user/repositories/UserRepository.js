@@ -1,10 +1,13 @@
 const { ok, erro } = require('../../../common')
+
 module.exports = class UserRepository {
   #collection = 'User'
   #mongoConnection = null
+  #userModel = null
 
-  constructor({ mongoConnection }) {
+  constructor({ mongoConnection, userModel }) {
     this.#mongoConnection = mongoConnection
+    this.#userModel = userModel
   }
 
   async find() {
@@ -14,6 +17,14 @@ module.exports = class UserRepository {
         .find({ "deletedAt": null })
         .project({ _id: 0, deletedAt: 0 })
         .toArray()
+
+      if (result.length) {
+        const resultWithModelInstance = result.map(user => {
+          return new this.#userModel(user)
+        })
+
+        return ok({ data: resultWithModelInstance })
+      }
 
       return ok({ data: result })
     } catch (error) {
@@ -34,6 +45,11 @@ module.exports = class UserRepository {
         { id, "deletedAt": null },
         { _id: 0, deletedAt: 0 }
       )
+
+      if (result) {
+        const resultWithModelInstance = new this.#userModel(result)
+        return ok({ data: resultWithModelInstance })
+      }
 
       return ok({ data: result })
     } catch (error) {
@@ -97,6 +113,56 @@ module.exports = class UserRepository {
       }
 
       return ok({})
+    } catch (error) {
+      console.log(error)
+
+      return erro({
+        message: 'There was an error deleting the record',
+        code: 'REPOSITORY',
+        erros: [error.message],
+      })
+    }
+  }
+
+  async findOneByEmail(email) {
+    try {
+      const db = await this.#mongoConnection.db()
+      const result = await db.collection(this.#collection).findOne(
+        { email, "deletedAt": null },
+        { _id: 0, deletedAt: 0 }
+      )
+
+      if (result) {
+        const resultWithModelInstance = new this.#userModel(result)
+        return ok({ data: resultWithModelInstance })
+      }
+
+      return ok({ data: result })
+    } catch (error) {
+      console.log(error)
+
+      return erro({
+        message: 'There was an error deleting the record',
+        code: 'REPOSITORY',
+        erros: [error.message],
+      })
+    }
+  }
+
+  async findOneByNickname(nickname) {
+    try {
+      const db = await this.#mongoConnection.db()
+      const result = await db.collection(this.#collection).findOne(
+        { nickname, "deletedAt": null },
+        { _id: 0, deletedAt: 0 }
+      )
+
+      if (result) {
+        const resultWithModelInstance = new this.#userModel(result)
+        return ok({ data: resultWithModelInstance })
+      }
+
+      return ok({ data: result })
     } catch (error) {
       console.log(error)
 

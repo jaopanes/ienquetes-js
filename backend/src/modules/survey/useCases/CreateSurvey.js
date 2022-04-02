@@ -1,7 +1,7 @@
 const Survey = require('../models/Survey')
 const { ok, erro, validationError } = require('../../../common')
 
-module.exports = class CreateSurveyService {
+module.exports = class CreateSurvey {
   #surveyRepository = null
 
   constructor({ surveyRepository }) {

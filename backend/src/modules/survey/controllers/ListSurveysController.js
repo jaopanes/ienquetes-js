@@ -1,15 +1,15 @@
 const { statusCodes } = require("../../../common")
 
 module.exports = class ListSurveysController {
-  #listSurveysService = null
+  #listSurveys = null
 
-  constructor({ listSurveysService }) {
-    this.#listSurveysService = listSurveysService
+  constructor({ listSurveys }) {
+    this.#listSurveys = listSurveys
   }
 
   async execute(req, res) {
     try {
-      const listSurveys = await this.#listSurveysService.execute()
+      const listSurveys = await this.#listSurveys.execute()
       const statusCode = statusCodes[listSurveys.code]
 
       if (!listSurveys.ok) {

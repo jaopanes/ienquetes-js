@@ -1,17 +1,17 @@
 const { statusCodes } = require("../../../common")
 
 module.exports = class FindSurveyController {
-  #findSurveyService = null
+  #findSurvey = null
 
-  constructor({ findSurveyService }) {
-    this.#findSurveyService = findSurveyService
+  constructor({ findSurvey }) {
+    this.#findSurvey = findSurvey
   }
 
   async execute(req, res) {
     try {
       const { id } = req.params
 
-      const findSurvey = await this.#findSurveyService.execute({ id })
+      const findSurvey = await this.#findSurvey.execute({ id })
       const statusCode = statusCodes[findSurvey.code]
 
       if (!findSurvey.ok) {

@@ -1,16 +1,17 @@
 const { statusCodes } = require("../../../common")
-module.exports = class DeleteSurveyController {
-  #deleteSurveyService = null
 
-  constructor({ deleteSurveyService }) {
-    this.#deleteSurveyService = deleteSurveyService
+module.exports = class DeleteSurveyController {
+  #deleteSurvey = null
+
+  constructor({ deleteSurvey }) {
+    this.#deleteSurvey = deleteSurvey
   }
 
   async execute(req, res) {
     try {
       const { id } = req.params
 
-      const deleteSurvey = await this.#deleteSurveyService.execute({ id })
+      const deleteSurvey = await this.#deleteSurvey.execute({ id })
       const statusCode = statusCodes[deleteSurvey.code]
 
       if (!deleteSurvey.ok) {

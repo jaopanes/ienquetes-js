@@ -1,17 +1,17 @@
 const { statusCodes } = require('../../../common')
 
 module.exports = class RegisterUserController {
-  #registerUserService = null
+  #registerUser = null
 
-  constructor({ registerUserService }) {
-    this.#registerUserService = registerUserService
+  constructor({ registerUser }) {
+    this.#registerUser = registerUser
   }
 
   async execute(req, res) {
     try {
       const { name, nickname, email, password, confirmPassword } = req.body
 
-      const registerUser = await this.#registerUserService.execute({
+      const registerUser = await this.#registerUser.execute({
         name, nickname, email, password, confirmPassword
       })
       const statusCode = statusCodes[registerUser.code]

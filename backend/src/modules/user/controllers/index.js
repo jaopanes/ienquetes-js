@@ -1,7 +1,7 @@
 const RegisterUserController = require('./RegisterUserController');
 
-const { registerUserService } = require('../services')
+const { registerUser } = require('../useCases')
 
 module.exports = {
-  registerUserController: new RegisterUserController({ registerUserService })
+  registerUserController: new RegisterUserController({ registerUser })
 }

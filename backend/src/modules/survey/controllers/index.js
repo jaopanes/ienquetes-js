@@ -4,15 +4,15 @@ const FindSurveyController = require('./FindSurveyController')
 const ListSurveysController = require('./ListSurveysController')
 
 const {
-  createSurveyService,
-  deleteSurveyService,
-  findSurveyService,
-  listSurveysService
-} = require('../services')
+  createSurvey,
+  deleteSurvey,
+  findSurvey,
+  listSurveys
+} = require('../useCases')
 
 module.exports = {
-  createSurveyController: new CreateSurveyController({ createSurveyService }),
-  deleteSurveyController: new DeleteSurveyController({ deleteSurveyService }),
-  findSurveyController: new FindSurveyController({ findSurveyService }),
-  listSurveysController: new ListSurveysController({ listSurveysService })
+  createSurveyController: new CreateSurveyController({ createSurvey }),
+  deleteSurveyController: new DeleteSurveyController({ deleteSurvey }),
+  findSurveyController: new FindSurveyController({ findSurvey }),
+  listSurveysController: new ListSurveysController({ listSurveys })
 }
