@@ -19,6 +19,18 @@ module.exports = class RegisterUser {
     const erros = []
 
     try {
+      if (!name) {
+        erros.push('Name fild is required')
+      }
+      if (!nickname) {
+        erros.push('Nickname fild is required')
+      }
+      if (!email) {
+        erros.push('Email fild is required')
+      }
+      if (!password) {
+        erros.push('Password field is required')
+      }
       if (!confirmPassword) {
         erros.push('Confirm password field is required')
       }
@@ -27,13 +39,21 @@ module.exports = class RegisterUser {
       }
 
       const userCreatedWithEmail = await this.#userRepository.findOneByEmail(email);
-      if(userCreatedWithEmail.data) {
-        erros.push('User already registered with this email')
+      if (userCreatedWithEmail.data) {
+        return erro({
+          code: 'VALIDATION_INPUT',
+          message: 'There were validation errors',
+          erros: ['User already registered with this email']
+        })
       }
 
       const userCreatedWithNickname = await this.#userRepository.findOneByNickname(nickname);
-      if(userCreatedWithNickname.data) {
-        erros.push('User already registered with this nickname')
+      if (userCreatedWithNickname.data) {
+        return erro({
+          code: 'VALIDATION_INPUT',
+          message: 'There were validation errors',
+          erros: ['User already registered with this nickname']
+        })
       }
 
       if (erros.length > 0) {
