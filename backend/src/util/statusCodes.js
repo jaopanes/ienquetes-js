@@ -6,5 +6,6 @@ module.exports = {
   SUCCESS: 200,
   CREATED: 201,
   NO_CONTENT: 204,
-  NOT_FOUND: 404
+  NOT_FOUND: 404,
+  UNAUTHORIZED: 401
 }

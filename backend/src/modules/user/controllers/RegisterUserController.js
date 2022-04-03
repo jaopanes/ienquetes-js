@@ -1,4 +1,4 @@
-const { statusCodes } = require('../../../common')
+const { statusCodes } = require('../../../util')
 
 module.exports = class RegisterUserController {
   #registerUser = null

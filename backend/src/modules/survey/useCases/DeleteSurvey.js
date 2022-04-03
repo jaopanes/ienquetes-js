@@ -1,4 +1,4 @@
-const { ok, erro } = require('../../../common')
+const { ok, erro } = require('../../../util')
 const Survey = require('../models/Survey')
 
 module.exports = class DeleteSurvey {

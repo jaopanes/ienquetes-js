@@ -1,4 +1,4 @@
-const { uuid, date, validationError, validations } = require('../../../common')
+const { uuid, date, validationError, validations } = require('../../../util')
 
 /**
  * @description Survey model

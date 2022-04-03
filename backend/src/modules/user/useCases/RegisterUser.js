@@ -1,5 +1,5 @@
 const User = require('../models/User')
-const { validationError, erro, ok } = require('../../../common')
+const { validationError, erro, ok } = require('../../../util')
 
 module.exports = class RegisterUser {
   #userRepository = null

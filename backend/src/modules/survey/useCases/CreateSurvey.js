@@ -1,5 +1,5 @@
 const Survey = require('../models/Survey')
-const { ok, erro, validationError } = require('../../../common')
+const { ok, erro, validationError } = require('../../../util')
 
 module.exports = class CreateSurvey {
   #surveyRepository = null

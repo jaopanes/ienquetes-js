@@ -1,4 +1,4 @@
-const MongoConnection = require('../../../infra/db/MongoConnection')
+const MongoConnection = require('../../../shared/db/MongoConnection')
 
 const SurveyRepository = require('./SurveyRepository')
 

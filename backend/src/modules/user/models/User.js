@@ -1,4 +1,4 @@
-const { date, uuid, validations, validationError, hash } = require('../../../common')
+const { date, uuid, validations, validationError, hash } = require('../../../util')
 
 module.exports = class User {
   #erros = []

@@ -1,4 +1,4 @@
-const { erro, ok } = require('../../../common')
+const { erro, ok } = require('../../../util')
 
 module.exports = class ListSurveys {
   #surveyRepository = null
