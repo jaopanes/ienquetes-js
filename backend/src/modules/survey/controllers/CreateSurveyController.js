@@ -10,9 +10,10 @@ module.exports = class CreateSurveyController {
   async execute(req, res) {
     try {
       const { title, initiatedAt, endedAt, options } = req.body
+      const { userAuthorized: user } = req;
 
       const createSurvey = await this.#createSurvey.execute({
-        title, initiatedAt, endedAt, options
+        title, initiatedAt, endedAt, options, user
       })
       const statusCode = statusCodes[createSurvey.code]
 

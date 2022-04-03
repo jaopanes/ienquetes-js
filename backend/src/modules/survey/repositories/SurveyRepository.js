@@ -19,7 +19,7 @@ module.exports = class SurveyRepository {
 
       if (result.length) {
         const resultWithModelInstance = result.map(user => {
-          return new this.#surveyModel(user).secureReturn()
+          return new this.#surveyModel(user)
         })
 
         return ok({ data: resultWithModelInstance })
@@ -46,7 +46,7 @@ module.exports = class SurveyRepository {
       )
 
       if (result) {
-        const resultWithModelInstance = new this.#surveyModel(result).secureReturn()
+        const resultWithModelInstance = new this.#surveyModel(result)
         return ok({ data: resultWithModelInstance })
       }
 

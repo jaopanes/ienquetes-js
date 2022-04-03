@@ -11,6 +11,7 @@ module.exports = class Survey {
    * @param {string} param.initiatedAt Date to init survey.
    * @param {string} param.endedAt Date to end survey.
    * @param {array} param.options Options survey.
+   * @param {object} param.user User created survey.
    * @param {string} [param.createdAt] Created at date (YYYY-MM-DD HH:mm:ss).
    * @param {string} [param.updatedAt] Updated at date (YYYY-MM-DD HH:mm:ss).
    * @param {string} [param.deletedAt] Deleted at date (YYYY-MM-DD HH:mm:ss).
@@ -23,6 +24,7 @@ module.exports = class Survey {
     initiatedAt,
     endedAt,
     options,
+    user,
     createdAt = date.currentDateHour(),
     updatedAt = date.currentDateHour(),
     deletedAt = null,
@@ -49,6 +51,22 @@ module.exports = class Survey {
     if (deletedAt && !validations.dateHour(deletedAt)) {
       this.#erros.push('Deleted at is must be in the format YYYY-MM-DD HH:mm:ss')
     }
+    if (!user || typeof user !== 'object') {
+      this.#erros.push('User is required and must be object')
+    } else {
+      if (!user.id) {
+        this.#erros.push('Field id in user must be required')
+      }
+      if (!user.name) {
+        this.#erros.push('Field name in user must be required')
+      }
+      if (!user.nickname) {
+        this.#erros.push('Field nickname in user must be required')
+      }
+      if (!user.email) {
+        this.#erros.push('Field email in user must be required')
+      }
+    }
 
     if (this.#erros.length > 0) {
       throw new validationError('There were validation errors', this.#erros)
@@ -67,6 +85,7 @@ module.exports = class Survey {
 
       return option
     })
+    this.user = user
     this.createdAt = createdAt
     this.updatedAt = updatedAt
     this.deletedAt = deletedAt
@@ -86,6 +105,7 @@ module.exports = class Survey {
       initiatedAt: this.initiatedAt,
       endedAt: this.endedAt,
       options: this.options,
+      user: this.user,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       id: this.id

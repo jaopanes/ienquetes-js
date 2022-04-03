@@ -14,13 +14,14 @@ module.exports = class CreateSurvey {
    * @param {string} endedAt
    * @param {array} options
    */
-  async execute({ title, initiatedAt, endedAt, options }) {
+  async execute({ title, initiatedAt, endedAt, options, user }) {
     try {
       const survey = new Survey({
         title,
         initiatedAt,
         endedAt,
-        options
+        options,
+        user
       })
 
       const surveyCreate = await this.#surveyRepository.insert(survey)
