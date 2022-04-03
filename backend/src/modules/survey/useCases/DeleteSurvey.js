@@ -29,17 +29,7 @@ module.exports = class DeleteSurvey {
         })
       }
 
-      const survey = new Survey({
-        title: findSurvey.data.title,
-        initiatedAt: findSurvey.data.initiatedAt,
-        endedAt: findSurvey.data.endedAt,
-        options: findSurvey.data.options,
-        createdAt: findSurvey.data.createdAt,
-        updatedAt: findSurvey.data.updatedAt,
-        deletedAt: findSurvey.data.deletedAt,
-        id: findSurvey.data.id
-      }).safeDelete()
-
+      const survey = findSurvey.data.safeDelete()
       const safeDeleteSurvey = await this.#surveyRepository.safeDelete(survey)
 
       if (!safeDeleteSurvey.ok) {

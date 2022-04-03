@@ -57,10 +57,16 @@ module.exports = class Survey {
     this.title = title
     this.initiatedAt = initiatedAt
     this.endedAt = endedAt
-    this.options = options.map(option => ({
-      id: uuid.generate(),
-      name: option
-    }))
+    this.options = options.map(option => {
+      if (typeof option === 'string') {
+        return {
+          id: uuid.generate(),
+          name: option
+        }
+      }
+
+      return option
+    })
     this.createdAt = createdAt
     this.updatedAt = updatedAt
     this.deletedAt = deletedAt

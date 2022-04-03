@@ -2,9 +2,11 @@ const { ok, erro } = require('../../../util')
 module.exports = class SurveyRepository {
   #collection = 'Survey'
   #mongoConnection = null
+  #surveyModel = null
 
-  constructor({ mongoConnection }) {
+  constructor({ mongoConnection, surveyModel }) {
     this.#mongoConnection = mongoConnection
+    this.#surveyModel = surveyModel
   }
 
   async find() {
@@ -14,6 +16,14 @@ module.exports = class SurveyRepository {
         .find({ "deletedAt": null })
         .project({ _id: 0, deletedAt: 0 })
         .toArray()
+
+      if (result.length) {
+        const resultWithModelInstance = result.map(user => {
+          return new this.#surveyModel(user).secureReturn()
+        })
+
+        return ok({ data: resultWithModelInstance })
+      }
 
       return ok({ data: result })
     } catch (error) {
@@ -34,6 +44,11 @@ module.exports = class SurveyRepository {
         { id, "deletedAt": null },
         { _id: 0, deletedAt: 0 }
       )
+
+      if (result) {
+        const resultWithModelInstance = new this.#surveyModel(result).secureReturn()
+        return ok({ data: resultWithModelInstance })
+      }
 
       return ok({ data: result })
     } catch (error) {
