@@ -20,7 +20,7 @@ module.exports = class UserRepository {
 
       if (result.length) {
         const resultWithModelInstance = result.map(user => {
-          return new this.#userModel(user)
+          return new this.#userModel(user).secureReturn()
         })
 
         return ok({ data: resultWithModelInstance })
@@ -47,7 +47,7 @@ module.exports = class UserRepository {
       )
 
       if (result) {
-        const resultWithModelInstance = new this.#userModel(result)
+        const resultWithModelInstance = new this.#userModel(result).secureReturn()
         return ok({ data: resultWithModelInstance })
       }
 
@@ -133,7 +133,7 @@ module.exports = class UserRepository {
       )
 
       if (result) {
-        const resultWithModelInstance = new this.#userModel(result)
+        const resultWithModelInstance = new this.#userModel(result).secureReturn()
         return ok({ data: resultWithModelInstance })
       }
 
@@ -158,7 +158,7 @@ module.exports = class UserRepository {
       )
 
       if (result) {
-        const resultWithModelInstance = new this.#userModel(result)
+        const resultWithModelInstance = new this.#userModel(result).secureReturn()
         return ok({ data: resultWithModelInstance })
       }
 
