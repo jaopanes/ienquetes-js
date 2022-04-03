@@ -1,5 +1,5 @@
-const user = require("../../../modules/user/routes")
-const survey = require("../../../modules/survey/routes")
+const { routes: user } = require("../../../modules/user")
+const { routes: survey } = require("../../../modules/survey")
 
 module.exports = router => {
   router.use('/user', user)

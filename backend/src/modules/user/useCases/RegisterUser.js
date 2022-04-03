@@ -1,4 +1,4 @@
-const User = require('../models/User')
+const { User } = require('../models')
 const { validationError, erro, ok } = require('../../../util')
 
 module.exports = class RegisterUser {

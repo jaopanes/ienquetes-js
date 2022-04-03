@@ -1,5 +1,5 @@
 const MongoConnection = require('../../../shared/db/MongoConnection')
-const User = require('../models/User')
+const { User } = require('../models')
 
 const UserRepository = require('./UserRepository')
 
