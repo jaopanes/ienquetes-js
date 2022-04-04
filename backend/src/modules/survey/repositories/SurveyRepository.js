@@ -122,4 +122,32 @@ module.exports = class SurveyRepository {
       })
     }
   }
+
+  async findByUser(userId) {
+    try {
+      const db = await this.#mongoConnection.db()
+      const result = await db.collection(this.#collection)
+        .find({ "deletedAt": null, "user.id": userId })
+        .project({ _id: 0, deletedAt: 0 })
+        .toArray()
+
+      if (result.length) {
+        const resultWithModelInstance = result.map(user => {
+          return new this.#surveyModel(user)
+        })
+
+        return ok({ data: resultWithModelInstance })
+      }
+
+      return ok({ data: result })
+    } catch (error) {
+      console.log(error)
+
+      return erro({
+        message: 'There was an error occurred while listinig records',
+        code: 'REPOSITORY',
+        erros: [error.message],
+      })
+    }
+  }
 }
