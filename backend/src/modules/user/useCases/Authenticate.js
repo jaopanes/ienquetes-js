@@ -1,4 +1,4 @@
-const { erro, hash, ok, validationError } = require("../../../util")
+const { erro, hash, ok, validationError } = require('../../../util')
 
 module.exports = class Authenticate {
   #userRepository = null
@@ -25,10 +25,10 @@ module.exports = class Authenticate {
       const passwordMatch = hash.compare(password, userCreatedWithEmail.data.password)
       if (!passwordMatch) return this.errorUnauthorized()
 
-      const jwtToken = this.#token.generate(userCreatedWithEmail.data.secureReturn());
+      const jwtToken = this.#token.generate(userCreatedWithEmail.data.secureReturn())
 
       return ok({
-        code: "SUCCESS", data: {
+        code: 'SUCCESS', data: {
           ...userCreatedWithEmail.data.secureReturn(), token: jwtToken
         }
       });

@@ -42,11 +42,16 @@ module.exports = class User {
     this.name = name
     this.nickname = nickname.toLowerCase()
     this.email = email.toLowerCase()
-    this.password = hash.generateHash(password)
+    this.password = password
     this.createdAt = createdAt
     this.updatedAt = updatedAt
     this.deletedAt = deletedAt
     this.id = id
+  }
+
+  hashPassword() {
+    this.password = hash.generateHash(this.password)
+    return this
   }
 
   secureReturn() {

@@ -65,7 +65,7 @@ module.exports = class RegisterUser {
         nickname,
         email,
         password
-      })
+      }).hashPassword()
 
       const userCreate = await this.#userRepository.insert(user)
 
