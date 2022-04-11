@@ -1,8 +1,6 @@
 <template>
   <section class="login" @keypress.enter="submit">
-    <p class="description">
-      Faça login, crie e responda enquetes em tempo real
-    </p>
+    <the-title>Faça login, crie e responda enquetes em tempo real</the-title>
 
     <base-input
       id="email"
@@ -22,19 +20,25 @@
       v-model="form.password"
     />
 
-    <p class="text-register">
-      Novo por aqui? <router-link to="/registro">Cadastre-se</router-link>
+    <p>
+      Novo por aqui?
+      <strong><router-link to="/registro">Cadastre-se</router-link></strong>
     </p>
 
     <div class="base-button">
-      <button class="btn-submit" @click="submit">Fazer login</button>
+      <base-button @click="submit">Fazer login</base-button>
     </div>
   </section>
 </template>
 
 <script>
+import TheTitle from "../../../modules/auth/components/TheTitle/index.vue";
+import BaseButton from "../../../modules/auth/components/BaseButton/index.vue";
+
 export default {
-  namr: "AuthLogin",
+  name: "AuthLogin",
+
+  components: { TheTitle, BaseButton },
 
   data() {
     return {
