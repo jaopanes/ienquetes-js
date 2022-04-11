@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-const Home = () => import(/* webpackChunkName:"home" */ "../views/Home.vue");
+const Login = () => import(/* webpackChunkName:"authlogin" */ "../views/Auth/Login/index.vue");
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Login",
+    component: Login,
+    meta: {
+      layout: "AppAuth"
+    }
   },
 ];
 

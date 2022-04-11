@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Default from "./Default/index.vue";
+import AppDefault from "./AppDefault/index.vue";
 import { ref, markRaw } from "vue";
 export default {
   name: "AppLayout",
@@ -22,9 +22,9 @@ export default {
           const component =
             route.meta.layout &&
             (await import(`./${route.meta.layout}/index.vue`));
-          this.layout = markRaw(component?.default || Default);
+          this.layout = markRaw(component?.default || AppDefault);
         } catch (e) {
-          this.layout = markRaw(Default);
+          this.layout = markRaw(AppDefault);
         }
       },
     },

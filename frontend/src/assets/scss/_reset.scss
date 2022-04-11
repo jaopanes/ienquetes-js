@@ -20,6 +20,7 @@ textarea,
 select {
   border: 0;
   padding: 0;
+  outline: none;
 }
 
 body,
@@ -36,13 +37,11 @@ img {
 }
 
 button,
-a,
 div,
 input,
 label,
 textarea,
 select,
-p,
 h1,
 h2,
 h3,
@@ -50,4 +49,14 @@ h4,
 h5,
 h6 {
   display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 500;
 }

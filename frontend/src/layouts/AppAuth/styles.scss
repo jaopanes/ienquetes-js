@@ -1,0 +1,18 @@
+#auth {
+  background-color: #161616;
+  height: 100vh;
+  color: #fff;
+  padding: 2rem;
+
+  .title {
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin-bottom: 3rem;
+
+    span {
+      background-image: linear-gradient(to bottom, #FD884A, #EF2E37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
