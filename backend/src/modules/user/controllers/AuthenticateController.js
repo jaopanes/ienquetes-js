@@ -28,7 +28,7 @@ module.exports = class AuthenticateController {
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error authenticate', code: 'CONTROLLER', erros: [error.message] })
+      return res.status(500).json({ message: 'Foram encontrados erros ao autenticar.', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

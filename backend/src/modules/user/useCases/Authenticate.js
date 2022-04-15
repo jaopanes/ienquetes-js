@@ -12,8 +12,8 @@ module.exports = class Authenticate {
   errorUnauthorized() {
     return erro({
       code: 'UNAUTHORIZED',
-      message: 'Error while authenticating',
-      erros: ['Email or password invalid']
+      message: 'Erro ao autenticar usuário.',
+      erros: ['Email ou senha inválidos.']
     })
   }
 
@@ -39,7 +39,7 @@ module.exports = class Authenticate {
         return erro({ code: 'VALIDATION_INPUT', message: error.message, erros: error.erros })
       }
 
-      return erro({ code: 'SERVICE', message: 'There was an error to authenticate', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'Foram encontrados erros ao autenticar.', erros: [error.message] })
     }
   }
 }

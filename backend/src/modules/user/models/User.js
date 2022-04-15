@@ -14,29 +14,29 @@ module.exports = class User {
     id = uuid.generate()
   }) {
     if (!name || typeof name !== 'string') {
-      this.#erros.push('Name is required and string type')
+      this.#erros.push('"name" é obrigatório e do tipo string.')
     }
     if (!nickname || typeof nickname !== 'string') {
-      this.#erros.push('Nickname is required and string type')
+      this.#erros.push('"nickname" é obrigatório e do tipo string.')
     }
     if (!email || typeof email !== 'string' || !validations.email(email)) {
-      this.#erros.push('Email is required and must be a valid email')
+      this.#erros.push('"email" é obrigatório e do tipo string.')
     }
-    if (!password || typeof password !== 'string') {
-      this.#erros.push('Password is required and must be a valid password')
+    if (!password || typeof password !== 'string' || password.length < 6) {
+      this.#erros.push('"password" é obrigatório e deve ser no mínimo 6 caractéres.')
     }
     if (!createdAt || typeof createdAt !== 'string' || !validations.dateHour(createdAt)) {
-      this.#erros.push('Created at is required and must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"createdAt" é obrigatório e deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (!updatedAt || typeof updatedAt !== 'string' || !validations.dateHour(updatedAt)) {
-      this.#erros.push('Updated at is required and must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"updatedAt" é obrigatório e deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (deletedAt && !validations.dateHour(deletedAt)) {
-      this.#erros.push('Deleted at is must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"deletedAt" deve ser uma data no formato YYYY-MM-DD HH:mm:ss')
     }
 
     if (this.#erros.length > 0) {
-      throw new validationError('There were validation errors', this.#erros)
+      throw new validationError('Foram encontrados erros de validação para usuário.', this.#erros)
     }
 
     this.name = name

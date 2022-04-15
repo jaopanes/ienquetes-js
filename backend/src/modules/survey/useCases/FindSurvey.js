@@ -31,7 +31,7 @@ module.exports = class FindSurvey {
     } catch (error) {
       console.log(error)
 
-      return erro({ code: 'SERVICE', message: 'There was an error occurred finding record', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'Foram encontrados erros ao buscar uma enquete.', erros: [error.message] })
     }
   }
 } 

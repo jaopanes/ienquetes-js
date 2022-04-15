@@ -23,7 +23,7 @@ module.exports = class ListSurveysByUser {
     } catch (error) {
       console.log(error)
 
-      return erro({ code: 'SERVICE', message: 'There was an error occurred while listinig records', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'Foram encontrados erros ao listar enquetes do usuário.', erros: [error.message] })
     }
   }
 } 

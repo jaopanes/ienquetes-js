@@ -31,45 +31,45 @@ module.exports = class Survey {
     id = uuid.generate()
   }) {
     if (!title || typeof title !== 'string') {
-      this.#erros.push('Title is required and string type')
+      this.#erros.push('"title" é obrigatório e deve ser do tipo texto.')
     }
     if (!initiatedAt || typeof initiatedAt !== 'string' || !validations.dateHour(initiatedAt)) {
-      this.#erros.push('Initiated at is required and must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"initiatedAt" é obrigatório e deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (!endedAt || typeof endedAt !== 'string' || !validations.dateHour(endedAt)) {
-      this.#erros.push('Ended at is required and must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"endedAt" é obrigatório e deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (!options || !Array.isArray(options) || options.length < 3) {
-      this.#erros.push('Options is required and must have at least 3 options')
+      this.#erros.push('"options" é obrigatório e deve ter no mínimo 3 opções.')
     }
     if (!createdAt || typeof createdAt !== 'string' || !validations.dateHour(createdAt)) {
-      this.#erros.push('Created at is required and must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"createdAt" é obrigatório e deve uma data no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (!updatedAt || typeof updatedAt !== 'string' || !validations.dateHour(updatedAt)) {
-      this.#erros.push('Updated at is required and must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"updatedAt" é obrigatório e deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (deletedAt && !validations.dateHour(deletedAt)) {
-      this.#erros.push('Deleted at is must be in the format YYYY-MM-DD HH:mm:ss')
+      this.#erros.push('"deletedAt" deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (!user || typeof user !== 'object') {
-      this.#erros.push('User is required and must be object')
+      this.#erros.push('"user" é obrigatório e deve ser um objeto.')
     } else {
       if (!user.id) {
-        this.#erros.push('Field id in user must be required')
+        this.#erros.push('Campo "id" é obrigatório para user.')
       }
       if (!user.name) {
-        this.#erros.push('Field name in user must be required')
+        this.#erros.push('Campo "name" é obrigatório para user.')
       }
       if (!user.nickname) {
-        this.#erros.push('Field nickname in user must be required')
+        this.#erros.push('Campo "nickname" é obrigatório para user.')
       }
       if (!user.email) {
-        this.#erros.push('Field email in user must be required')
+        this.#erros.push('Campo "email" é obrigatório para user.')
       }
     }
 
     if (this.#erros.length > 0) {
-      throw new validationError('There were validation errors', this.#erros)
+      throw new validationError('Foram encontrados erros de validação para enquete.', this.#erros)
     }
 
     this.title = title

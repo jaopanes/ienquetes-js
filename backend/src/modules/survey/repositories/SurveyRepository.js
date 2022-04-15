@@ -30,7 +30,7 @@ module.exports = class SurveyRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error occurred while listinig records',
+        message: 'Erro ao buscar enquetes.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -55,7 +55,7 @@ module.exports = class SurveyRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error occurred finding record',
+        message: 'Erro ao buscar uma enquete.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -69,7 +69,7 @@ module.exports = class SurveyRepository {
 
       if (!result.acknowledged) {
         return erro({
-          message: 'There was an error entering the record',
+          message: 'Erro ao inserir uma enquete.',
           code: 'REPOSITORY',
         })
       }
@@ -79,7 +79,7 @@ module.exports = class SurveyRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error entering the record',
+        message: 'Erro ao inserir uma enquete.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -106,7 +106,7 @@ module.exports = class SurveyRepository {
 
       if (!result.acknowledged || result.modifiedCount !== 1) {
         return erro({
-          message: 'There was an error deleting the record',
+          message: 'Erro ao deletar uma enquete.',
           code: 'REPOSITORY',
         })
       }
@@ -116,7 +116,7 @@ module.exports = class SurveyRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error deleting the record',
+        message: 'Erro ao deletar uma enquete.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -144,7 +144,7 @@ module.exports = class SurveyRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error occurred while listinig records',
+        message: 'Erro ao buscar enquetes do usuário.',
         code: 'REPOSITORY',
         erros: [error.message],
       })

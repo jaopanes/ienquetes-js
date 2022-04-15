@@ -42,7 +42,7 @@ module.exports = class CreateSurvey {
         return erro({ code: 'VALIDATION_INPUT', message: error.message, erros: error.erros })
       }
 
-      return erro({ code: 'SERVICE', message: 'There was an error entering the record', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'Foram encontrados erros ao criar uma enquete.', erros: [error.message] })
     }
   }
 } 

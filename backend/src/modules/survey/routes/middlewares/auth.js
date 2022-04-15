@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
       message: 'Unauthotized',
       code: 'UNAUTHORIZED',
       erros: [
-        'Invalid authentication token'
+        'Usuário não autorizado.'
       ]
     })
   }
@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
       message: 'Forbidden',
       code: 'FORBIDDEN',
       erros: [
-        'User unauthorized to acess endpoint'
+        'Usuário não autorizado a acessar esse endpoind.'
       ]
     })
   }

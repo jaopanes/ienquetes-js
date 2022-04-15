@@ -37,7 +37,7 @@ module.exports = class ListSurveysByUserController {
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error occurred while listinig records', code: 'CONTROLLER', erros: [error.message] })
+      return res.status(500).json({ message: 'Foram encontrados erros ao listar enquetes do usuário.', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

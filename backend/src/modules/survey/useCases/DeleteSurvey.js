@@ -44,7 +44,7 @@ module.exports = class DeleteSurvey {
     } catch (error) {
       console.log(error)
 
-      return erro({ code: 'SERVICE', message: 'There was an error occurred deleting record', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'Foram encontrados erros ao deletar uma enquete.', erros: [error.message] })
     }
   }
 } 

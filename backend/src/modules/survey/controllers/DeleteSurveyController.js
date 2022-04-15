@@ -26,7 +26,7 @@ module.exports = class DeleteSurveyController {
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error occurred deleting record', code: 'CONTROLLER', erros: [error.message] })
+      return res.status(500).json({ message: 'Foram encontrados erro ao deletar uma enquete.', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

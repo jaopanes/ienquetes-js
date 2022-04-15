@@ -26,7 +26,7 @@ module.exports = class FindSurveyController {
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error occurred finding record', code: 'CONTROLLER', erros: [error.message] })
+      return res.status(500).json({ message: 'Foram encontrados erros ao buscar uma enquete.', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

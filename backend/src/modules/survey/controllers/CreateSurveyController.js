@@ -29,7 +29,7 @@ module.exports = class CreateSurveyController {
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error entering the record', code: 'CONTROLLER', erros: [error.message] })
+      return res.status(500).json({ message: 'Foram encontrados erros ao criar uma enquete.', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

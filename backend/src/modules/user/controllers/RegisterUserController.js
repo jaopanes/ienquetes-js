@@ -28,7 +28,7 @@ module.exports = class RegisterUserController {
     } catch (error) {
       console.log(error)
 
-      return res.status(500).json({ message: 'There was an error register user', code: 'CONTROLLER', erros: [error.message] })
+      return res.status(500).json({ message: 'Foram encontrados erros ao fazer registro.', code: 'CONTROLLER', erros: [error.message] })
     }
   }
 }

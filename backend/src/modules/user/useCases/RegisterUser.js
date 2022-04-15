@@ -20,30 +20,30 @@ module.exports = class RegisterUser {
 
     try {
       if (!name) {
-        erros.push('Name fild is required')
+        erros.push('Nome é obrigatório.')
       }
       if (!nickname) {
-        erros.push('Nickname fild is required')
+        erros.push('Usuário é obrigatório.')
       }
       if (!email) {
-        erros.push('Email fild is required')
+        erros.push('Email é obrigatório.')
       }
       if (!password) {
-        erros.push('Password field is required')
+        erros.push('Senha é obrigatória.')
       }
       if (!confirmPassword) {
-        erros.push('Confirm password field is required')
+        erros.push('Confirmação de senha é obrigatória.')
       }
       if (password !== confirmPassword) {
-        erros.push('Passwords do not match')
+        erros.push('Senhas não conferem.')
       }
 
       const userCreatedWithEmail = await this.#userRepository.findOneByEmail(email);
       if (userCreatedWithEmail.data) {
         return erro({
           code: 'VALIDATION_INPUT',
-          message: 'There were validation errors',
-          erros: ['User already registered with this email']
+          message: 'Foram encontrados erros de validação.',
+          erros: ['Já existem registros com esse email.']
         })
       }
 
@@ -51,13 +51,13 @@ module.exports = class RegisterUser {
       if (userCreatedWithNickname.data) {
         return erro({
           code: 'VALIDATION_INPUT',
-          message: 'There were validation errors',
-          erros: ['User already registered with this nickname']
+          message: 'Foram encontrados erros de validação.',
+          erros: ['Já existem registros com esse usuário.']
         })
       }
 
       if (erros.length > 0) {
-        throw new validationError('There were validation errors', erros)
+        throw new validationError('Foram encontrados erros de validação.', erros)
       }
 
       const user = new User({
@@ -85,7 +85,7 @@ module.exports = class RegisterUser {
         return erro({ code: 'VALIDATION_INPUT', message: error.message, erros: error.erros })
       }
 
-      return erro({ code: 'SERVICE', message: 'There was an error entering the record', erros: [error.message] })
+      return erro({ code: 'SERVICE', message: 'Foram encontrados erros ao fazer registro.', erros: [error.message] })
     }
   }
 } 

@@ -31,7 +31,7 @@ module.exports = class UserRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error occurred while listinig records',
+        message: 'Erro ao buscar usuários.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -56,7 +56,7 @@ module.exports = class UserRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error occurred finding record',
+        message: 'Erro ao buscar um usuário.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -70,7 +70,7 @@ module.exports = class UserRepository {
 
       if (!result.acknowledged) {
         return erro({
-          message: 'There was an error entering the record',
+          message: 'Erro ao inserir usuário.',
           code: 'REPOSITORY',
         })
       }
@@ -80,7 +80,7 @@ module.exports = class UserRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error entering the record',
+        message: 'Erro ao inserir usuário.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -107,7 +107,7 @@ module.exports = class UserRepository {
 
       if (!result.acknowledged || result.modifiedCount !== 1) {
         return erro({
-          message: 'There was an error deleting the record',
+          message: 'Erro ao deletar usuário.',
           code: 'REPOSITORY',
         })
       }
@@ -117,7 +117,7 @@ module.exports = class UserRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error deleting the record',
+        message: 'Erro ao deletar usuário.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -142,7 +142,7 @@ module.exports = class UserRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error deleting the record',
+        message: 'Erro ao buscar usuário por email.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
@@ -167,7 +167,7 @@ module.exports = class UserRepository {
       console.log(error)
 
       return erro({
-        message: 'There was an error deleting the record',
+        message: 'Erro ao buscar usuário pelo nickname.',
         code: 'REPOSITORY',
         erros: [error.message],
       })
