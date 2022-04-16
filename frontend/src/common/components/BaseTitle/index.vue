@@ -1,5 +1,5 @@
 <template>
-  <p class="title">
+  <p class="title" :class="titleClasses">
     <template v-if="text">
       {{ text }}
     </template>
@@ -12,12 +12,23 @@
 
 <script>
 export default {
-  name: "AuthTheTitle",
+  name: "BaseTitle",
 
   props: {
     text: {
       required: false,
       type: String,
+    },
+    size: {
+      required: false,
+      type: String,
+      default: "",
+    },
+  },
+
+  computed: {
+    titleClasses() {
+      return [this.size];
     },
   },
 };

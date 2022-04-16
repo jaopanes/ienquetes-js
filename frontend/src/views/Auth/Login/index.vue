@@ -1,6 +1,6 @@
 <template>
   <section class="login" @keypress.enter="submit">
-    <the-title>Faça login, crie e responda enquetes em tempo real</the-title>
+    <base-title>Faça login, crie e responda enquetes em tempo real</base-title>
 
     <base-input
       id="email"
@@ -32,13 +32,12 @@
 </template>
 
 <script>
-import TheTitle from "../../../modules/auth/components/TheTitle/index.vue";
 import BaseButton from "../../../modules/auth/components/BaseButton/index.vue";
 
 export default {
   name: "AuthLogin",
 
-  components: { TheTitle, BaseButton },
+  components: { BaseButton },
 
   data() {
     return {
@@ -85,6 +84,10 @@ export default {
       }
 
       this.toast("Usuário logado com sucesso!", "success");
+
+      setTimeout(() => {
+        this.$router.push({ path: "/enquetes" });
+      }, 2000);
     },
   },
 };

@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from "vue-router";
 const Login = () => import(/* webpackChunkName:"authlogin" */ "../views/Auth/Login/index.vue");
 const Register = () => import(/* webpackChunkName:"authregister" */ "../views/Auth/Register/index.vue");
 
+const ListAllSurveys = () => import(/* */ "../views/Survey/ListAll/index.vue");
+
 const routes = [
   {
     path: "/",
@@ -20,6 +22,14 @@ const routes = [
       layout: "AppAuth"
     }
   },
+  {
+    path: "/enquetes",
+    name: "Surveys",
+    component: ListAllSurveys,
+    meta: {
+      layout: "AppMain"
+    }
+  }
 ];
 
 const router = createRouter({

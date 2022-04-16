@@ -1,8 +1,8 @@
 <template>
   <section class="register" @keypress.enter="submit">
-    <the-title>
+    <base-title>
       Crie sua conta e interaja criando e respondendo enquetes
-    </the-title>
+    </base-title>
 
     <base-input
       id="name"
@@ -61,13 +61,12 @@
 </template>
 
 <script>
-import TheTitle from "../../../modules/auth/components/TheTitle/index.vue";
 import BaseButton from "../../../modules/auth/components/BaseButton/index.vue";
 
 export default {
   namr: "AuthLogin",
 
-  components: { TheTitle, BaseButton },
+  components: { BaseButton },
 
   data() {
     return {
@@ -131,7 +130,7 @@ export default {
 
       setTimeout(() => {
         this.$router.push({ path: "/" });
-      }, 3000);
+      }, 2000);
     },
   },
 };

@@ -1,0 +1,30 @@
+#main {
+  background-color: #161616;
+  height: 100vh;
+  color: #fff;
+  padding: 2rem;
+  overflow: auto;
+
+  > .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+
+    > .user-info {
+      display: flex;
+      align-items: center;
+
+      > .picture {
+        max-height: 45px;
+        border-radius: 100%;
+      }
+
+      > .name {
+        margin-left: 0.75rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
