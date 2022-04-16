@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import AuthLayout from '../layouts/AuthLayout/index.vue'
+import MainLayout from '../layouts/MainLayout/index.vue'
+
 const Login = () => import(/* webpackChunkName:"authlogin" */ "../views/Auth/Login/index.vue");
 const Register = () => import(/* webpackChunkName:"authregister" */ "../views/Auth/Register/index.vue");
 
-const ListAllSurveys = () => import(/* */ "../views/Survey/ListAll/index.vue");
+const ListAllSurveys = () => import(/* webpackChunkName:"listallsurveys" */ "../views/Survey/ListAll/index.vue");
 
 const routes = [
   {
@@ -11,7 +14,7 @@ const routes = [
     name: "Login",
     component: Login,
     meta: {
-      layout: "AppAuth"
+      layout: AuthLayout
     }
   },
   {
@@ -19,7 +22,7 @@ const routes = [
     name: "Register",
     component: Register,
     meta: {
-      layout: "AppAuth"
+      layout: AuthLayout
     }
   },
   {
@@ -27,7 +30,7 @@ const routes = [
     name: "Surveys",
     component: ListAllSurveys,
     meta: {
-      layout: "AppMain"
+      layout: MainLayout
     }
   }
 ];

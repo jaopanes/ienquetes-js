@@ -1,19 +1,22 @@
 <template>
-  <Layout>
+  <component :is="layout">
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
-  </Layout>
+  </component>
 </template>
 
 <script>
-import Layout from "./layouts/index.vue";
-
 export default {
   name: "App",
-  components: { Layout },
+
+  computed: {
+    layout() {
+      return this.$route.meta.layout || "div";
+    },
+  },
 };
 </script>
 

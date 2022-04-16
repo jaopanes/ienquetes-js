@@ -8,8 +8,9 @@
 
 # Front-end
 
-- [ ] Corrigir bug de dupla instância do componente (ocasionado pelo layouts)
+- [x] Corrigir bug de dupla instância do componente (ocasionado pelo layouts)
 - [ ] Adicionar lib de gereciamento de estado (avaliar entre vuex ou pinia)
 - [ ] Implementar mecanismo de refresh token
 - [ ] Salvar dados do usuário após o login no state
 - [ ] Criar página inicial com listagem de enquetes
+- [ ] Adicionar lib de icones
