@@ -16,4 +16,5 @@
 - [x] Salvar dados do usuário após o login no state
 - [ ] Criar página inicial com listagem de enquetes
 - [ ] Adicionar lib de icones
-- [ ] Criar middlewares de autenticação (usuário logado para paginas internas e usuário deslogado para login)
+- [x] Criar middlewares de autenticação (usuário logado para paginas internas e usuário deslogado para login)
+- [ ] Implementar logout
