@@ -127,7 +127,7 @@ export default {
       const response = await this.register(this.form);
 
       if (!response.ok) {
-        this.toast(response.data.erro, "error");
+        this.toast(response.erro, "error");
         return;
       }
 
