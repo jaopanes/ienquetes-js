@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import BaseButton from "../../../modules/auth/components/BaseButton/index.vue";
 
 export default {
@@ -81,6 +82,10 @@ export default {
   },
 
   methods: {
+    ...mapActions("auth", {
+      register: "register",
+    }),
+
     toast(message, type) {
       this.$toast.open({
         message,
@@ -119,10 +124,10 @@ export default {
     async submit() {
       if (!this.validateForm()) return;
 
-      const response = await this.$api.user.register(this.form);
+      const response = await this.register(this.form);
 
-      if (![201, 200].includes(response.status)) {
-        this.toast(response.data.erros[0], "error");
+      if (!response.ok) {
+        this.toast(response.data.erro, "error");
         return;
       }
 

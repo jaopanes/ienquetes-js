@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import BaseButton from "../../../modules/auth/components/BaseButton/index.vue";
 
 export default {
@@ -49,6 +50,10 @@ export default {
   },
 
   methods: {
+    ...mapActions("auth", {
+      authenticate: "authenticate",
+    }),
+
     toast(message, type) {
       this.$toast.open({
         message,
@@ -76,10 +81,10 @@ export default {
       if (!this.validateForm()) return;
 
       const { email, password } = this.form;
-      const response = await this.$api.user.authenticate(email, password);
+      const response = await this.authenticate({ email, password });
 
-      if (![201, 200].includes(response.status)) {
-        this.toast(response.data.erros[0], "error");
+      if (!response.ok) {
+        this.toast(response.data.erro, "error");
         return;
       }
 

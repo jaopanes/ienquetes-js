@@ -43,11 +43,7 @@ export default {
     }
 
     this.surveys = response.data;
-  }, 
-
-  beforeUnmount() {
-    console.log('destruido')
-  }
+  },
 };
 </script>
 
