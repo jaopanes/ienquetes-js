@@ -18,7 +18,7 @@ export default {
       try {
         const response = await api.user.authenticate(payload.email, payload.password)
 
-        if (response.status !== 201) {
+        if (response.status !== 200) {
           const erro = response.data.erros[0] || 'Ocorreu um erro interno.'
           return { ok: false, erro }
         }
