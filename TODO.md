@@ -7,6 +7,7 @@
 - [ ] Adicionar validação de data inicial deve ser sempre menor que a data final
 - [ ] Implementar logout
 - [ ] Implementar uplaod de foto do usuário
+- [ ] Implementar verificação de token
 
 # Front-end
 
@@ -18,3 +19,4 @@
 - [ ] Adicionar lib de icones
 - [x] Criar middlewares de autenticação (usuário logado para paginas internas e usuário deslogado para login)
 - [ ] Implementar logout
+- [ ] Verificar se o token não foi expirado

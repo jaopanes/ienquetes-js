@@ -1,9 +1,7 @@
-const RegisterUserController = require('./RegisterUserController');
-const AuthenticateController = require('./AuthenticateController')
+const RegisterUserController = require('./RegisterUserController')
 
-const { registerUser, authenticate } = require('../useCases')
+const { registerUser } = require('../useCases')
 
 module.exports = {
-  registerUserController: new RegisterUserController({ registerUser }),
-  authenticateController: new AuthenticateController({ authenticate })
+  registerUserController: new RegisterUserController({ registerUser })
 }
