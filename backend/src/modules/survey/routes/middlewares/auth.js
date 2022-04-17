@@ -1,4 +1,4 @@
-const serviceToken = require('../../../../shared/token')
+const { token: serviceToken } = require('../../../../shared/utils')
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers

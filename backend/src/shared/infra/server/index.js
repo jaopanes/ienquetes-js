@@ -8,5 +8,5 @@ app.use(cors())
 app.use(express.json())
 app.use(routes(express.Router()))
 
-module.exports = app;
+module.exports = app
 

@@ -1,4 +1,5 @@
-const { ok, erro } = require('../../../util')
+const { erro, ok } = require('../../../shared/helpers').returns
+
 module.exports = class SurveyRepository {
   #collection = 'Survey'
   #mongoConnection = null

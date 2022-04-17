@@ -1,4 +1,4 @@
-const { erro, ok } = require('../../../util')
+const { erro, ok } = require('../../../shared/helpers').returns
 
 module.exports = class ListSurveysByUser {
   #surveyRepository = null

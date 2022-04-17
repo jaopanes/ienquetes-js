@@ -1,4 +1,4 @@
-const { statusCodes } = require("../../../util")
+const { statusCodes } = require('../../../shared/helpers')
 
 module.exports = class ListSurveysByUserController {
   #listSurveysByUser = null
@@ -17,7 +17,7 @@ module.exports = class ListSurveysByUserController {
           message: 'Forbidden',
           code: 'FORBIDDEN',
           erros: [
-            'User unauthorized to acess list surveys'
+            'Usuário não autorizado a acessar enquetes'
           ]
         })
       }

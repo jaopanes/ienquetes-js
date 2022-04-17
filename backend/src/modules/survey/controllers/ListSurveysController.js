@@ -1,4 +1,4 @@
-const { statusCodes } = require("../../../util")
+const { statusCodes } = require('../../../shared/helpers')
 
 module.exports = class ListSurveysController {
   #listSurveys = null

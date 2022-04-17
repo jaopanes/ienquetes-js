@@ -1,12 +1,12 @@
-const { erro, hash, ok, validationError } = require('../../../util')
+const { erro, ok } = require('../../../shared/helpers').returns
+const { validationError } = require('../../../shared/errors')
+const { token, hash } = require('../../../shared/utils')
 
 module.exports = class Authenticate {
   #userRepository = null
-  #token = null
 
-  constructor({ userRepository, token }) {
+  constructor({ userRepository }) {
     this.#userRepository = userRepository
-    this.#token = token;
   }
 
   errorUnauthorized() {
@@ -25,11 +25,12 @@ module.exports = class Authenticate {
       const passwordMatch = hash.compare(password, userCreatedWithEmail.data.password)
       if (!passwordMatch) return this.errorUnauthorized()
 
-      const jwtToken = this.#token.generate(userCreatedWithEmail.data.secureReturn())
+      const secureUser = userCreatedWithEmail.data.secureReturn()
+      const jwtToken = token.generate(secureUser)
 
       return ok({
         code: 'SUCCESS', data: {
-          ...userCreatedWithEmail.data.secureReturn(), token: jwtToken
+          ...secureUser, token: jwtToken
         }
       });
     } catch (error) {

@@ -1,5 +1,6 @@
 const Survey = require('../models/Survey')
-const { ok, erro, validationError } = require('../../../util')
+const { erro, ok } = require('../../../shared/helpers').returns
+const { validationError } = require('../../../shared/errors')
 
 module.exports = class CreateSurvey {
   #surveyRepository = null

@@ -1,4 +1,6 @@
-const { date, uuid, validations, validationError, hash } = require('../../../util')
+const { uuid, hash } = require('../../../shared/utils')
+const { date, validations } = require('../../../shared/helpers')
+const { validationError } = require('../../../shared/errors')
 
 module.exports = class User {
   #erros = []

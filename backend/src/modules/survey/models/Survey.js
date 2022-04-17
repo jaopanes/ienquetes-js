@@ -1,4 +1,6 @@
-const { uuid, date, validationError, validations } = require('../../../util')
+const { uuid } = require('../../../shared/utils')
+const { date, validations } = require('../../../shared/helpers')
+const { validationError } = require('../../../shared/errors')
 
 /**
  * @description Survey model

@@ -1,4 +1,4 @@
-const { ok, erro } = require('../../../util')
+const { ok, erro } = require('../../../shared/helpers').returns
 
 module.exports = class UserRepository {
   #collection = 'User'

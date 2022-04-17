@@ -1,5 +1,4 @@
-const { ok, erro } = require('../../../util')
-const Survey = require('../models/Survey')
+const { erro, ok } = require('../../../shared/helpers').returns
 
 module.exports = class DeleteSurvey {
   #surveyRepository = null
