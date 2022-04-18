@@ -4,10 +4,11 @@
 - [ ] Ordenar pelas enquetes que terminarão primeiro
 - [ ] Adicionar filtros ao endpoint de surveys (filtro status, filtro data)
 - [ ] Criar mecanismo de refresh token
-- [ ] Adicionar validação de data inicial deve ser sempre menor que a data final
+- [x] Adicionar validação de data inicial deve ser sempre menor que a data final
+- [x] Adicionar validação de data iniciar deve ser maior ou igual que o momento atual
 - [ ] Implementar logout
 - [ ] Implementar uplaod de foto do usuário
-- [ ] Implementar verificação de token
+- [x] Implementar verificação de token
 
 # Front-end
 

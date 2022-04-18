@@ -36,10 +36,16 @@ module.exports = class Survey {
       this.#erros.push('"title" é obrigatório e deve ser do tipo texto.')
     }
     if (!initiatedAt || typeof initiatedAt !== 'string' || !validations.dateHour(initiatedAt)) {
-      this.#erros.push('"initiatedAt" é obrigatório e deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
+      this.#erros.push('"initiatedAt" é obrigatório e deve ser uma data válida no formato YYYY-MM-DD HH:mm:ss.')
     }
     if (!endedAt || typeof endedAt !== 'string' || !validations.dateHour(endedAt)) {
-      this.#erros.push('"endedAt" é obrigatório e deve ser uma data no formato YYYY-MM-DD HH:mm:ss.')
+      this.#erros.push('"endedAt" é obrigatório e deve ser uma data válida no formato YYYY-MM-DD HH:mm:ss.')
+    }
+    if (!validations.dateIsBefore(initiatedAt, endedAt)) {
+      this.#erros.push('"iniaitedAt" deve ser menor que "endedAt".')
+    }
+    if (!validations.dateIsBefore(date.currentDateHour(), initiatedAt)) {
+      this.#erros.push('"iniaitedAt" deve ser maior que a data atual.')
     }
     if (!options || !Array.isArray(options) || options.length < 3) {
       this.#erros.push('"options" é obrigatório e deve ter no mínimo 3 opções.')
